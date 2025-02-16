@@ -359,7 +359,7 @@ CREATE TABLE `surat_ktp_sementara` (
   `id_pejabat_desa` int DEFAULT NULL,
   `status_surat` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `id_profil_desa` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_general_ci;
 
 --
 -- Dumping data for table `surat_ktp_sementara`

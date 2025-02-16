@@ -24,17 +24,24 @@
         $nama_ayah = $_POST['fnama_ayah'];
         $nama_ibu = $_POST['fnama_ibu'];
 
-        $qCekPenduduk = mysqli_query($connect, "SELECT * FROM penduduk WHERE nik='$nik'");
-        $row          = mysqli_num_rows($qCekPenduduk);
+        $stmt = $connect->prepare("SELECT nik FROM penduduk WHERE nik = ?");
+        $stmt->bind_param("s", $nik);
+        $stmt->execute();
+        $stmt->store_result();
 
-        if($row > 0){
-            header('location:index.php?pesan=gagal-menambah');
-        }else{
-            $qTambahPenduduk = "INSERT INTO penduduk VALUES(NULL, '$nik', '$nama', '$tempat_lahir', '$tgl_lahir', '$jenis_kelamin', '$agama', '$jalan', '$rt', '$rw', '$desa', '$kecamatan', '$kabupaten', '$no_kk', '$pend_kk', '$pend_terakhir', '$pekerjaan', '$status_perkawinan', '$status_dlm_keluarga', '$kewarganegaraan', '$nama_ayah', '$nama_ibu')";
-            $tambahPenduduk = mysqli_query($connect, $qTambahPenduduk);
-            if($tambahPenduduk){
-                header("location:index.php");
+        if ($stmt->num_rows > 0) {
+            echo "<script>alert('Gagal! NIK sudah terdaftar.'); window.location.href='http://localhost/desa/admin/dashboard/';</script>";
+        } else {
+            $stmt = $connect->prepare("INSERT INTO penduduk (nik, nama, tempat_lahir, tgl_lahir, jenis_kelamin, agama, jalan, rt, rw, desa, kecamatan, kabupaten, no_kk, pend_kk, pend_terakhir, pekerjaan, status_perkawinan, status_dlm_keluarga, kewarganegaraan, nama_ayah, nama_ibu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssssssssssssssssss", $nik, $nama, $tempat_lahir, $tgl_lahir, $jenis_kelamin, $agama, $jalan, $rt, $rw, $desa, $kecamatan, $kabupaten, $no_kk, $pend_kk, $pend_terakhir, $pekerjaan, $status_perkawinan, $status_dlm_keluarga, $kewarganegaraan, $nama_ayah, $nama_ibu);
+
+            if ($stmt->execute()) {
+                echo "<script>alert('Data berhasil disimpan!'); window.location.href='http://localhost/desa/admin/dashboard/';</script>";
+            } else {
+                echo "<script>alert('Gagal menyimpan data!'); window.location.href='http://localhost/desa/admin/dashboard/';</script>";
             }
         }
+        $stmt->close();
+        $connect->close();
     }
 ?>

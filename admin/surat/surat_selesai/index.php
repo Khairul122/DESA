@@ -101,12 +101,6 @@ include('../../../config/koneksi.php');
     </ol>
   </section>
   <section class="content">
-    <?php
-    include('../../../config/koneksi.php');
-
-    $nik_login = isset($_SESSION['nik']) ? $_SESSION['nik'] : '';
-
-    ?>
     <div class="row">
       <div class="col-md-12">
         <br><br>
@@ -126,29 +120,17 @@ include('../../../config/koneksi.php');
             <?php
 
             $no = 1;
-            $qTampil = mysqli_query($connect, "
-            SELECT penduduk.nama, surat_keterangan.id_sk, surat_keterangan.no_surat, surat_keterangan.nik, surat_keterangan.jenis_surat, surat_keterangan.status_surat, surat_keterangan.tanggal_surat 
-            FROM penduduk 
-            LEFT JOIN surat_keterangan ON surat_keterangan.nik = penduduk.nik 
-            WHERE surat_keterangan.status_surat='selesai' AND surat_keterangan.nik='$nik_login'
-            
-            UNION 
-
-            SELECT penduduk.nama, surat_keterangan_tidak_mampu.id_sktm, surat_keterangan_tidak_mampu.no_surat, surat_keterangan_tidak_mampu.nik, surat_keterangan_tidak_mampu.jenis_surat, surat_keterangan_tidak_mampu.status_surat, surat_keterangan_tidak_mampu.tanggal_surat 
-            FROM penduduk 
-            LEFT JOIN surat_keterangan_tidak_mampu ON surat_keterangan_tidak_mampu.nik = penduduk.nik 
-            WHERE surat_keterangan_tidak_mampu.status_surat='selesai' AND surat_keterangan_tidak_mampu.nik='$nik_login'
-            
-            UNION 
-
-            SELECT penduduk.nama, surat_ktp_sementara.id_ks, surat_ktp_sementara.no_surat, surat_ktp_sementara.nik, surat_ktp_sementara.jenis_surat, surat_ktp_sementara.status_surat, surat_ktp_sementara.tanggal_surat 
-            FROM penduduk 
-            LEFT JOIN surat_ktp_sementara ON surat_ktp_sementara.nik = penduduk.nik 
-            WHERE surat_ktp_sementara.status_surat='selesai' AND surat_ktp_sementara.nik='$nik_login'
-        ");
-
-        foreach ($qTampil as $row) {
-        ?>
+            $qTampil = mysqli_query($connect, "SELECT penduduk.nama, surat_keterangan.id_sk, surat_keterangan.no_surat , surat_keterangan.nik , surat_keterangan.jenis_surat , surat_keterangan.status_surat , surat_keterangan.tanggal_surat FROM penduduk LEFT JOIN surat_keterangan ON surat_keterangan.nik = penduduk.nik WHERE surat_keterangan.status_surat='selesai'
+                UNION SELECT penduduk.nama, surat_keterangan_tidak_mampu.id_sktm, surat_keterangan_tidak_mampu.no_surat , surat_keterangan_tidak_mampu.nik , surat_keterangan_tidak_mampu.jenis_surat , surat_keterangan_tidak_mampu.status_surat , surat_keterangan_tidak_mampu.tanggal_surat FROM penduduk LEFT JOIN surat_keterangan_tidak_mampu ON surat_keterangan_tidak_mampu.nik = penduduk.nik WHERE surat_keterangan_tidak_mampu.status_surat='selesai'
+                UNION SELECT penduduk.nama, surat_ktp_sementara.id_ks, surat_ktp_sementara.no_surat , surat_ktp_sementara.nik , surat_ktp_sementara.jenis_surat , surat_ktp_sementara.status_surat , surat_ktp_sementara.tanggal_surat FROM penduduk LEFT JOIN surat_ktp_sementara ON surat_ktp_sementara.nik = penduduk.nik WHERE surat_ktp_sementara.status_surat='selesai'  
+                UNION SELECT penduduk.nama, surat_keterangan_berkelakuan_baik.id_skbb, surat_keterangan_berkelakuan_baik.no_surat, surat_keterangan_berkelakuan_baik.nik, surat_keterangan_berkelakuan_baik.jenis_surat, surat_keterangan_berkelakuan_baik.status_surat, surat_keterangan_berkelakuan_baik.tanggal_surat FROM penduduk LEFT JOIN surat_keterangan_berkelakuan_baik ON surat_keterangan_berkelakuan_baik.nik = penduduk.nik WHERE surat_keterangan_berkelakuan_baik.status_surat='selesai'
+                UNION SELECT penduduk.nama, surat_keterangan_domisili.id_skd, surat_keterangan_domisili.no_surat , surat_keterangan_domisili.nik , surat_keterangan_domisili.jenis_surat , surat_keterangan_domisili.status_surat , surat_keterangan_domisili.tanggal_surat FROM penduduk LEFT JOIN surat_keterangan_domisili ON surat_keterangan_domisili.nik = penduduk.nik WHERE surat_keterangan_domisili.status_surat='selesai' 
+                UNION SELECT penduduk.nama, surat_keterangan_usaha.id_sku, surat_keterangan_usaha.no_surat , surat_keterangan_usaha.nik , surat_keterangan_usaha.jenis_surat , surat_keterangan_usaha.status_surat , surat_keterangan_usaha.tanggal_surat FROM penduduk LEFT JOIN surat_keterangan_usaha ON surat_keterangan_usaha.nik = penduduk.nik WHERE surat_keterangan_usaha.status_surat='selesai'
+                UNION SELECT penduduk.nama, surat_pengantar_pindah.id_pp, surat_pengantar_pindah.no_surat , surat_pengantar_pindah.nik , surat_pengantar_pindah.jenis_surat , surat_pengantar_pindah.status_surat , surat_pengantar_pindah.tanggal_surat FROM penduduk LEFT JOIN surat_pengantar_pindah ON surat_pengantar_pindah.nik = penduduk.nik WHERE surat_pengantar_pindah.status_surat='selesai'
+                UNION SELECT penduduk.nama, surat_keterangan_lahir.id_skl, surat_keterangan_lahir.no_surat, surat_keterangan_lahir.nik, surat_keterangan_lahir.jenis_surat, surat_keterangan_lahir.status_surat, surat_keterangan_lahir.tanggal_surat FROM penduduk LEFT JOIN surat_keterangan_lahir ON surat_keterangan_lahir.nik = penduduk.nik WHERE surat_keterangan_lahir.status_surat='selesai' 
+               UNION SELECT penduduk.nama, surat_pengantar_skck.id_sps, surat_pengantar_skck.no_surat, surat_pengantar_skck.nik, surat_pengantar_skck.jenis_surat, surat_pengantar_skck.status_surat, surat_pengantar_skck.tanggal_surat FROM penduduk LEFT JOIN surat_pengantar_skck ON surat_pengantar_skck.nik = penduduk.nik WHERE surat_pengantar_skck.status_surat='selesai'");
+            foreach ($qTampil as $row) {
+            ?>
               <tr>
                 <?php
                 $tgl_lhr = date($row['tanggal_surat']);
@@ -181,8 +163,8 @@ include('../../../config/koneksi.php');
                   if ($row['jenis_surat'] == "Surat Keterangan") {
                   ?>
                     <a name="cetak" target="output" class="btn btn-primary btn-sm" href='../cetak/surat_keterangan/index.php?id=<?php echo $row['id_sk']; ?>'><i class="fa fa-print"></i><b> CETAK</b></a>
-                  <?php
-                  } else if ($row['jenis_surat'] == "Surat Keterangan Berkelakuan Baik") {
+                     <?php
+                   }else if ($row['jenis_surat'] == "Surat Keterangan Berkelakuan Baik") {
                   ?>
                     <a name="cetak" target="output" class="btn btn-primary btn-sm" href='../cetak/surat_keterangan_berkelakuan_baik/index.php?id=<?php echo $row['id_sk']; ?>'><i class="fa fa-print"></i><b> CETAK</b></a>
                   <?php
