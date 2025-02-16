@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+	<!-- view barang -->	
+    <!-- view barang -->	
+    <div class="modal-view">
+        <h3 style="text-align:center;"> 
+                                    Data Laporan Penjualan Januari 2025                        </h3>
+        <table border="1" width="100%" cellpadding="3" cellspacing="4">
+            <thead>
+                <tr bgcolor="yellow">
+                    <th> No</th>
+                    <th> ID Barang</th>
+                    <th> Nama Barang</th>
+                    <th style="width:10%;"> Jumlah</th>
+                    <th style="width:10%;"> Modal</th>
+                    <th style="width:10%;"> Total</th>
+                    <th> Kasir</th>
+                    <th> Tanggal Input</th>
+                </tr>
+            </thead>
+            <tbody>
+                                                <tr>
+                    <td>1</td>
+                    <td>BR001</td>
+                    <td>Monalisa</td>
+                    <td>1 </td>
+                    <td>Rp.10,000,-</td>
+                    <td>Rp.20,000,-</td>
+                    <td>NOVIA ALVINA</td>
+                    <td>2025-01-21 01:47:28</td>
+                </tr>
+                                <tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td><b>Total Terjual</b></td>
+                    <td><b>1</b></td>
+                    <td><b>Rp.10,000,-</b></td>
+                    <td><b>Rp.20,000,-</b></td>
+                    <td><b>Keuntungan</b></td>
+                    <td><b>
+                        Rp.10,000,-</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
