@@ -192,7 +192,8 @@ while ($row = mysqli_fetch_array($qCek)) {
 							<td width="30%"></td>
 							<td width="10%"></td>
 							<td align="center">
-								<?php echo $rows['nama_desa']; ?>,
+								Dikeluarkan : Simarosok <br> 
+								Pada Tanggal :
 								<?php
 								$tanggal = date('d F Y');
 								$bulan = date('F', strtotime($tanggal));

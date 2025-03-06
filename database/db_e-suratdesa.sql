@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 16, 2025 at 12:04 AM
+-- Generation Time: Mar 06, 2025 at 11:08 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `dusun` (
   `id_dusun` int NOT NULL,
-  `nama_dusun` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama_dusun` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `dusun`
@@ -52,13 +52,13 @@ INSERT INTO `dusun` (`id_dusun`, `nama_dusun`) VALUES
 
 CREATE TABLE `login` (
   `id` int NOT NULL,
-  `nik` varchar(20) NOT NULL,
-  `nama` varchar(30) NOT NULL,
-  `username` varchar(15) NOT NULL,
-  `email` varchar(30) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `level` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nik` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `nama` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(15) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(32) COLLATE utf8mb4_general_ci NOT NULL,
+  `level` varchar(10) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login`
@@ -68,7 +68,8 @@ INSERT INTO `login` (`id`, `nik`, `nama`, `username`, `email`, `password`, `leve
 (1, '', 'Administrator', 'admin', 'admin@e-suratdesa.com', '21232f297a57a5a743894a0e4a801fc3', 'admin'),
 (2, '', 'Kepala Desa', 'kades', 'kepaladesa@desa.id', '0cfa66469d25bd0d9e55d7ba583f9f2f', 'kades'),
 (3, '', 'Penduduk', 'penduduk', 'penduduk@3-suratdesa.com', '0ae60711d957cb3539d536bf9d5693e1', 'penduduk'),
-(4, '1377020610010009', 'Budiman', 'budi', 'budi@gmail.com', '00dfc53ee86af02e742515cdcf075ed3', 'penduduk');
+(4, '1377020610010009', 'Budiman', 'budi', 'budi@gmail.com', '00dfc53ee86af02e742515cdcf075ed3', 'penduduk'),
+(5, '1377020610010001', 'Anita Putri', 'anita', 'anita@gmail.com', '83349cbdac695f3943635a4fd1aaa7d0', 'penduduk');
 
 -- --------------------------------------------------------
 
@@ -78,16 +79,16 @@ INSERT INTO `login` (`id`, `nik`, `nama`, `username`, `email`, `password`, `leve
 
 CREATE TABLE `pejabat_desa` (
   `id_pejabat_desa` int NOT NULL,
-  `nama_pejabat_desa` varchar(50) NOT NULL,
-  `jabatan` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nama_pejabat_desa` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `jabatan` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pejabat_desa`
 --
 
 INSERT INTO `pejabat_desa` (`id_pejabat_desa`, `nama_pejabat_desa`, `jabatan`) VALUES
-(1, 'M. Nurzen', 'KEPALA DESA'),
+(1, 'M. Nurzen', 'WALI NAGARI'),
 (2, 'Budiarti', 'SEKDES');
 
 -- --------------------------------------------------------
@@ -126,11 +127,7 @@ CREATE TABLE `penduduk` (
 --
 
 INSERT INTO `penduduk` (`id_penduduk`, `nik`, `nama`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `agama`, `jalan`, `rt`, `rw`, `desa`, `kecamatan`, `kabupaten`, `no_kk`, `pend_kk`, `pend_terakhir`, `pekerjaan`, `status_perkawinan`, `status_dlm_keluarga`, `kewarganegaraan`, `nama_ayah`, `nama_ibu`) VALUES
-(112, '123456789765432', 'fgsdafd', 'dsav', '2025-02-05', 'Laki-laki', 'asasa', 'sasad', '001', '001', 'sasdsDas', 'addasda', 'adasdas', '87645323', 'SLTP/SEDERAJAT', 'SLTP/SEDERAJAT', 'wdgfhgdsasvb', 'Menikah', 'Ibu', 'WNA', 'qefsdv', 'fasdasv'),
-(109, '1306080610760001', 'SUPARMAN', 'SOLOK', '1976-06-13', 'Laki-laki', 'ISLAM', '-', '00', '00', 'SIMARASOK', 'BASO', 'AGAM', '1306082402085538', 'SLTP/SEDERAJAT', 'SLTP/SEDERAJAT', 'WIRASWASTA', 'Menikah', 'Ayah', 'WNI', 'NASARUDIN', 'EMEH'),
-(111, '1306081310140001', 'SATRIA ALFATIH', 'BUKITTINGGI', '2014-10-13', 'Perempuan', 'ISLAM', '-', '00', '00', 'SIMARASOK', 'BASO', 'AGAM', '1306082402085538', 'SD/SEDERAJAT', 'SD/SEDERAJAT', 'PELAJAR', 'Belum Menikah', 'Anak', 'WNI', 'SUPARMAN', 'ZULMAYATI'),
-(110, '1306084204020001', 'ELLA FISKA YANTI', 'BUKITTINGGI', '2002-04-02', 'Perempuan', 'ISLAM', '-', '00', '00', 'SIMARASOK', 'BASO', 'AGAM', '1306082402085538', 'SLTA/SEDERAJAT', 'SLTA/SEDERAJAT', 'MAHASISWA', 'Belum Menikah', 'Anak', 'WNI', 'SUPARMAN', 'ZULMAYATI'),
-(113, '1377020610010009', 'Budiman', 'Padang', '2025-02-16', 'Laki-laki', 'Islma', 'Siti Manggopoh', '00', '00', 'Naras', 'Pariaman Utara', 'Padang Pariaman', '1377020610010002', 'SD/SEDERAJAT', 'SD/SEDERAJAT', 'Belum kerja', 'Belum Menikah', 'Anak', 'WNI', 'Aliar', 'Rosmanidar');
+(115, '1377020610010009', 'Budiman', 'Padang', '2025-02-16', 'Laki-laki', 'Islam', 'Siti Manggopoh', '001', '001', 'Naras', 'Pariaman Utara', 'Pariaman', '1377020610010001', 'SD/SEDERAJAT', 'SD/SEDERAJAT', 'Belum kerja', 'Belum Menikah', 'Ayah', 'WNI', 'Aliar', 'Rosmanidar');
 
 -- --------------------------------------------------------
 
@@ -166,7 +163,7 @@ CREATE TABLE `surat` (
   `id` int NOT NULL,
   `nik` int NOT NULL,
   `jenis_surat` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -185,13 +182,6 @@ CREATE TABLE `surat_keterangan` (
   `status_surat` varchar(15) NOT NULL,
   `id_profil_desa` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `surat_keterangan`
---
-
-INSERT INTO `surat_keterangan` (`id_sk`, `jenis_surat`, `no_surat`, `nik`, `keperluan`, `tanggal_surat`, `id_pejabat_desa`, `status_surat`, `id_profil_desa`) VALUES
-(156, 'Surat Keterangan', '132', '1377020610010009', 'darurat', '2025-02-16 07:01:38', 1, 'SELESAI', 1);
 
 -- --------------------------------------------------------
 
@@ -228,13 +218,6 @@ CREATE TABLE `surat_keterangan_domisili` (
   `id_profil_desa` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `surat_keterangan_domisili`
---
-
-INSERT INTO `surat_keterangan_domisili` (`id_skd`, `jenis_surat`, `no_surat`, `nik`, `tanggal_surat`, `id_pejabat_desa`, `status_surat`, `id_profil_desa`) VALUES
-(22, 'Surat Keterangan Domisili', '321', '1306081310140001', '2025-02-03 23:01:56', 1, 'SELESAI', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -246,7 +229,6 @@ CREATE TABLE `surat_keterangan_kepemilikan_kendaraan_bermotor` (
   `jenis_surat` varchar(50) NOT NULL,
   `no_surat` varchar(20) DEFAULT NULL,
   `nik` varchar(20) NOT NULL,
-  `roda` varchar(20) NOT NULL,
   `merk_type` varchar(30) DEFAULT NULL,
   `jenis_model` varchar(30) DEFAULT NULL,
   `tahun_pembuatan` varchar(30) DEFAULT NULL,
@@ -264,13 +246,6 @@ CREATE TABLE `surat_keterangan_kepemilikan_kendaraan_bermotor` (
   `status_surat` varchar(15) NOT NULL,
   `id_profil_desa` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `surat_keterangan_kepemilikan_kendaraan_bermotor`
---
-
-INSERT INTO `surat_keterangan_kepemilikan_kendaraan_bermotor` (`id_skkkb`, `jenis_surat`, `no_surat`, `nik`, `roda`, `merk_type`, `jenis_model`, `tahun_pembuatan`, `cc`, `warna_cat`, `no_rangka`, `no_mesin`, `no_polisi`, `no_bpkb`, `atas_nama_pemilik`, `alamat_pemilik`, `keperluan`, `tanggal_surat`, `id_pejabat_desa`, `status_surat`, `id_profil_desa`) VALUES
-(6, 'Surat Keterangan Kepemilikan Kendaraan Bermotor', NULL, '123456789765432', '', 'adsdasd', 'qwqwqads', 'adsac', 'adsdad', 'adsS', 'adad', 'qwdas', 'adada', 'edfawd', 'addada', 'zczxc ', 'adsdasdad', '2025-02-05 04:13:16', NULL, 'PENDING', 1);
 
 -- --------------------------------------------------------
 
@@ -314,7 +289,7 @@ CREATE TABLE `surat_keterangan_tidak_mampu` (
   `id_pejabat_desa` int DEFAULT NULL,
   `status_surat` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `id_profil_desa` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -336,13 +311,6 @@ CREATE TABLE `surat_keterangan_usaha` (
   `id_profil_desa` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `surat_keterangan_usaha`
---
-
-INSERT INTO `surat_keterangan_usaha` (`id_sku`, `jenis_surat`, `no_surat`, `nik`, `usaha`, `alamat_usaha`, `keperluan`, `tanggal_surat`, `id_pejabat_desa`, `status_surat`, `id_profil_desa`) VALUES
-(9, 'Surat Keterangan usaha', '435324', '123456789765432', 'sasasas', 'iuytr', 'yyyyy', '2025-02-05 04:14:06', 2, 'SELESAI', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -359,14 +327,7 @@ CREATE TABLE `surat_ktp_sementara` (
   `id_pejabat_desa` int DEFAULT NULL,
   `status_surat` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `id_profil_desa` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_general_ci;
-
---
--- Dumping data for table `surat_ktp_sementara`
---
-
-INSERT INTO `surat_ktp_sementara` (`id_ks`, `jenis_surat`, `no_surat`, `nik`, `keperluan`, `tanggal_surat`, `id_pejabat_desa`, `status_surat`, `id_profil_desa`) VALUES
-(15, 'Surat ktp sementara', '132', '1377020610010009', 'Darurat', '2025-02-16 06:53:36', 1, 'SELESAI', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -548,7 +509,7 @@ ALTER TABLE `dusun`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pejabat_desa`
@@ -560,7 +521,7 @@ ALTER TABLE `pejabat_desa`
 -- AUTO_INCREMENT for table `penduduk`
 --
 ALTER TABLE `penduduk`
-  MODIFY `id_penduduk` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id_penduduk` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT for table `profil_desa`
@@ -572,61 +533,61 @@ ALTER TABLE `profil_desa`
 -- AUTO_INCREMENT for table `surat_keterangan`
 --
 ALTER TABLE `surat_keterangan`
-  MODIFY `id_sk` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
+  MODIFY `id_sk` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT for table `surat_keterangan_berkelakuan_baik`
 --
 ALTER TABLE `surat_keterangan_berkelakuan_baik`
-  MODIFY `id_skbb` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_skbb` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `surat_keterangan_domisili`
 --
 ALTER TABLE `surat_keterangan_domisili`
-  MODIFY `id_skd` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_skd` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `surat_keterangan_kepemilikan_kendaraan_bermotor`
 --
 ALTER TABLE `surat_keterangan_kepemilikan_kendaraan_bermotor`
-  MODIFY `id_skkkb` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_skkkb` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `surat_keterangan_lahir`
 --
 ALTER TABLE `surat_keterangan_lahir`
-  MODIFY `id_skl` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
+  MODIFY `id_skl` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `surat_keterangan_tidak_mampu`
 --
 ALTER TABLE `surat_keterangan_tidak_mampu`
-  MODIFY `id_sktm` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_sktm` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `surat_keterangan_usaha`
 --
 ALTER TABLE `surat_keterangan_usaha`
-  MODIFY `id_sku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_sku` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `surat_ktp_sementara`
 --
 ALTER TABLE `surat_ktp_sementara`
-  MODIFY `id_ks` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_ks` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `surat_pengantar_pindah`
 --
 ALTER TABLE `surat_pengantar_pindah`
-  MODIFY `id_pp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id_pp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT for table `surat_pengantar_skck`
 --
 ALTER TABLE `surat_pengantar_skck`
-  MODIFY `id_sps` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_sps` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables

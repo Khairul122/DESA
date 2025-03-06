@@ -112,11 +112,11 @@ p
     </ol>
   </section>
   <section class="content">
-    <div class="row">
+  <div class="row">
       <?php
       if (isset($_SESSION['lvl']) && ($_SESSION['lvl'] == 'Administrator')) {
       ?>
-        <div class="col-lg-4 col-xs-6">
+        <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>
@@ -136,20 +136,21 @@ p
             <a href="../penduduk/" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <div class="col-lg-4 col-xs-6">
+        <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-green">
             <div class="inner">
               <h3>
                 <?php
                 $qTampil = mysqli_query($connect, "SELECT tanggal_surat FROM surat_keterangan WHERE status_surat='pending' 
                   UNION SELECT tanggal_surat FROM surat_keterangan_domisili WHERE status_surat='pending'
-                   UNION SELECT tanggal_surat FROM surat_keterangan_berkelakuan_baik WHERE status_surat='pending'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_berkelakuan_baik WHERE status_surat='pending'
                   UNION SELECT tanggal_surat FROM surat_ktp_sementara WHERE status_surat='pending'
                   UNION SELECT tanggal_surat FROM surat_keterangan_usaha WHERE status_surat='pending'
                   UNION SELECT tanggal_surat FROM surat_pengantar_pindah WHERE status_surat='pending'
                   UNION SELECT tanggal_surat FROM surat_keterangan_tidak_mampu WHERE status_surat='pending'
                   UNION SELECT tanggal_surat FROM surat_keterangan_lahir WHERE status_surat='pending'
-                  UNION SELECT tanggal_surat FROM surat_pengantar_skck WHERE status_surat='pending'");
+                  UNION SELECT tanggal_surat FROM surat_pengantar_skck WHERE status_surat='pending'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_kepemilikan_kendaraan_bermotor WHERE status_surat='pending'");
                 $jumlahPermintaanSurat = mysqli_num_rows($qTampil);
                 echo $jumlahPermintaanSurat;
                 ?>
@@ -162,21 +163,23 @@ p
             <a href="../surat/permintaan_surat/" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <div class="col-lg-4 col-xs-6">
+        <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>
                 <?php
                 $qTampil = mysqli_query($connect, "SELECT tanggal_surat FROM surat_keterangan WHERE status_surat='selesai' 
                   UNION SELECT tanggal_surat FROM surat_keterangan_domisili WHERE status_surat='selesai'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_berkelakuan_baik WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_ktp_sementara WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_keterangan_usaha WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_pengantar_pindah WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_keterangan_tidak_mampu WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_keterangan_lahir WHERE status_surat='selesai'
-                  UNION SELECT tanggal_surat FROM surat_pengantar_skck WHERE status_surat='selesai'");
-                $jumlahPermintaanSurat = mysqli_num_rows($qTampil);
-                echo $jumlahPermintaanSurat;
+                  UNION SELECT tanggal_surat FROM surat_pengantar_skck WHERE status_surat='selesai'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_kepemilikan_kendaraan_bermotor WHERE status_surat='selesai'");
+                $jumlahSelesaiSurat = mysqli_num_rows($qTampil);
+                echo $jumlahSelesaiSurat;
                 ?>
               </h3>
               <p>Surat Selesai</p>
@@ -187,11 +190,38 @@ p
             <a href="../surat/surat_selesai/" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>
+                <?php
+                $qTampil = mysqli_query($connect, "SELECT tanggal_surat FROM surat_keterangan WHERE status_surat='ditolak' 
+                  UNION SELECT tanggal_surat FROM surat_keterangan_domisili WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_berkelakuan_baik WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_ktp_sementara WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_usaha WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_pengantar_pindah WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_tidak_mampu WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_lahir WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_pengantar_skck WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_kepemilikan_kendaraan_bermotor WHERE status_surat='ditolak'");
+                $jumlahDitolakSurat = mysqli_num_rows($qTampil);
+                echo $jumlahDitolakSurat;
+                ?>
+              </h3>
+              <p>Surat Ditolak</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-ban" style="font-size:70px"></i>
+            </div>
+            <a href="../surat/surat_ditolak/" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
       <?php
       } else if (isset($_SESSION['lvl']) && ($_SESSION['lvl'] == 'Kepala Desa')) {
       ?>
         <div class="col-lg-1"></div>
-        <div class="col-lg-5 col-xs-6">
+        <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3>
@@ -211,22 +241,21 @@ p
             <a href="../penduduk/" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <div class="col-lg-5 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
           <div class="small-box bg-yellow">
             <div class="inner">
-
               <h3>
                 <?php
-                include('../../config/koneksi.php');
-
-                $qTampil = mysqli_query($connect, "SELECT jenis_surat FROM surat_keterangan WHERE status_surat='selesai' UNION SELECT tanggal_surat FROM surat_keterangan_domisili WHERE status_surat='selesai'
+                $qTampil = mysqli_query($connect, "SELECT jenis_surat FROM surat_keterangan WHERE status_surat='selesai' 
+                  UNION SELECT tanggal_surat FROM surat_keterangan_domisili WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_ktp_sementara WHERE status_surat='selesai'
-                  UNION SELECT tanggal_surat FROM surat_keterangan_berkelakuan_baik WHERE status_surat='pending'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_berkelakuan_baik WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_keterangan_usaha WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_pengantar_pindah WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_keterangan_tidak_mampu WHERE status_surat='selesai'
                   UNION SELECT tanggal_surat FROM surat_keterangan_lahir WHERE status_surat='selesai'
-                  UNION SELECT tanggal_surat FROM surat_pengantar_skck WHERE status_surat='selesai'");
+                  UNION SELECT tanggal_surat FROM surat_pengantar_skck WHERE status_surat='selesai'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_kepemilikan_kendaraan_bermotor WHERE status_surat='selesai'");
                 $jumlahPermintaanSurat = mysqli_num_rows($qTampil);
                 echo $jumlahPermintaanSurat;
                 ?>
@@ -237,6 +266,33 @@ p
               <i class="fas fa-envelope" style="font-size:70px"></i>
             </div>
             <a href="../laporan/" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>
+                <?php
+                $qTampil = mysqli_query($connect, "SELECT tanggal_surat FROM surat_keterangan WHERE status_surat='ditolak' 
+                  UNION SELECT tanggal_surat FROM surat_keterangan_domisili WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_berkelakuan_baik WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_ktp_sementara WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_usaha WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_pengantar_pindah WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_tidak_mampu WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_lahir WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_pengantar_skck WHERE status_surat='ditolak'
+                  UNION SELECT tanggal_surat FROM surat_keterangan_kepemilikan_kendaraan_bermotor WHERE status_surat='ditolak'");
+                $jumlahDitolakSurat = mysqli_num_rows($qTampil);
+                echo $jumlahDitolakSurat;
+                ?>
+              </h3>
+              <p>Surat Ditolak</p>
+            </div>
+            <div class="icon">
+              <i class="fas fa-ban" style="font-size:70px"></i>
+            </div>
+            <a href="../surat/surat_ditolak/" class="small-box-footer">Lihat detail <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-1"></div>
@@ -447,9 +503,6 @@ p
                         </div>
                       </div>
                     <?php endif; ?>
-
-
-
                     <div style="font-size: 10pt; font-weight: 500;">© e-<b>SuratDesa</b> 2025. Hak Cipta Dilindungi.</div>
                   </div>
                 </div>

@@ -89,7 +89,7 @@ while ($row = mysqli_fetch_array($qCek)) {
                       <div class="form-group">
                         <label class="col-sm-3 control-label">Tanda Tangan</label>
                         <div class="col-sm-9">
-                          <select name="ft_tangan" class="form-control" style="text-transform: uppercase;" required>
+                          <select name="ft_tangan" class="form-control" style="text-transform: uppercase;">
                             <option value="">-- Pilih Tanda Tangan --</option>
                             <?php
                             $selectedPejabat  = $row['jabatan'];
@@ -118,7 +118,21 @@ while ($row = mysqli_fetch_array($qCek)) {
                       <div class="form-group">
                         <label class="col-sm-3 control-label">No. Surat</label>
                         <div class="col-sm-9">
-                          <input type="text" name="fno_surat" value="<?php echo $row['no_surat']; ?>" class="form-control" placeholder="Masukkan No. Surat" required>
+                          <?php
+                          $tahun_sekarang = date('Y');
+                          $qCekNoSurat = mysqli_query($connect, "SELECT no_surat FROM surat_keterangan_tidak_mampu WHERE no_surat LIKE '%SKS-$tahun_sekarang' ORDER BY no_surat DESC LIMIT 1");
+
+                          if (mysqli_num_rows($qCekNoSurat) > 0) {
+                            $dataSurat = mysqli_fetch_array($qCekNoSurat);
+                            $nomorBaru = explode("/", $dataSurat['no_surat']);
+                            $nomorUrut = (int)$nomorBaru[1];
+                            $nomorUrut++;
+                            $nomorSuratBaru = "140/" . sprintf("%02d", $nomorUrut) . "/SKS-" . $tahun_sekarang;
+                          } else {
+                            $nomorSuratBaru = "140/01/SKTM-" . $tahun_sekarang;
+                          }
+                          ?>
+                          <input type="text" name="fno_surat" value="<?php echo $nomorSuratBaru; ?>" class="form-control" readonly>
                         </div>
                       </div>
                     </div>
@@ -225,6 +239,7 @@ while ($row = mysqli_fetch_array($qCek)) {
                   <div class="col-md-6">
                     <div class="box-body pull-right">
                       <input type="submit" name="submit" class="btn btn-success" value="Konfirmasi">
+                      <input type="submit" name="tolak" class="btn btn-danger" value="Tolak">
                     </div>
                   </div>
                 </div>
