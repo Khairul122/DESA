@@ -120,14 +120,14 @@ while ($row = mysqli_fetch_array($qCek)) {
                         <div class="col-sm-9">
                           <?php
                           $tahun_sekarang = date('Y');
-                          $qCekNoSurat = mysqli_query($connect, "SELECT no_surat FROM surat_keterangan_usaha WHERE no_surat LIKE '%SKS-$tahun_sekarang' ORDER BY no_surat DESC LIMIT 1");
+                          $qCekNoSurat = mysqli_query($connect, "SELECT no_surat FROM surat_keterangan_usaha WHERE no_surat LIKE '%SKU-$tahun_sekarang' ORDER BY no_surat DESC LIMIT 1");
 
                           if (mysqli_num_rows($qCekNoSurat) > 0) {
                             $dataSurat = mysqli_fetch_array($qCekNoSurat);
                             $nomorBaru = explode("/", $dataSurat['no_surat']);
                             $nomorUrut = (int)$nomorBaru[1];
                             $nomorUrut++;
-                            $nomorSuratBaru = "140/" . sprintf("%02d", $nomorUrut) . "/SKS-" . $tahun_sekarang;
+                            $nomorSuratBaru = "140/" . sprintf("%02d", $nomorUrut) . "/SKU-" . $tahun_sekarang;
                           } else {
                             $nomorSuratBaru = "140/01/SKU-" . $tahun_sekarang;
                           }
